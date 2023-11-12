@@ -28,18 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            processDataBtn = new Button();
+            chooseFolderCb = new ComboBox();
             SuspendLayout();
+            // 
+            // processDataBtn
+            // 
+            processDataBtn.Location = new Point(62, 115);
+            processDataBtn.Name = "processDataBtn";
+            processDataBtn.Size = new Size(150, 50);
+            processDataBtn.TabIndex = 0;
+            processDataBtn.Text = "Process Data";
+            processDataBtn.UseVisualStyleBackColor = true;
+            processDataBtn.Click += processDataBtn_Click;
+            // 
+            // chooseFolderCb
+            // 
+            chooseFolderCb.FormattingEnabled = true;
+            chooseFolderCb.Items.AddRange(new object[] { "Testing + Training", "Large Data Set" });
+            chooseFolderCb.Location = new Point(62, 64);
+            chooseFolderCb.Name = "chooseFolderCb";
+            chooseFolderCb.Size = new Size(150, 28);
+            chooseFolderCb.TabIndex = 1;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(282, 253);
+            Controls.Add(chooseFolderCb);
+            Controls.Add(processDataBtn);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button processDataBtn;
+        private ComboBox chooseFolderCb;
     }
 }
