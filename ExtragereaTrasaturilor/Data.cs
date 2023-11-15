@@ -71,12 +71,8 @@ namespace ExtragereaTrasaturilor
                         writer.Write(word + " ");
                     }
                     writer.WriteLine("# " + folderName);
+                    writer.WriteLine();
                     fileIndex++;
-
-                    //AddWordsToGlobalVector(codesWords);
-                    //DisplayWords("Title Words", titleWords);
-                    //DisplayWords("Text Words", textWords);
-                    //DisplayWords("Codes Words", codesWords);
                 }
             }
             catch (Exception ex)
@@ -94,7 +90,9 @@ namespace ExtragereaTrasaturilor
             ReadXmlsFromFolder(testingFolderPath);
             folderName = "Training";
             ReadXmlsFromFolder(trainingFolderPath);
-            
+            writer.Flush();
+            writer.Close();
+            writer.Dispose();
         }
 
         public void ProcessLargeData()
@@ -140,10 +138,8 @@ namespace ExtragereaTrasaturilor
 
         public List<string> ExtractWordsFromElement(XmlDocument xmlDoc, string xpath)
         {
-            // Select the specified elements using XPath
             XmlNodeList elements = xmlDoc.SelectNodes(xpath);
 
-            // Extract globalVector from each selected element
             List<string> words = new List<string>();
             foreach (XmlNode element in elements)
             {
@@ -156,10 +152,8 @@ namespace ExtragereaTrasaturilor
 
         public List<string> ExtractCodeAttributesFromElement(XmlDocument xmlDoc, string xpath)
         {
-            // Select the specified elements using XPath
             XmlNodeList elements = xmlDoc.SelectNodes(xpath);
 
-            // Extract code attribute values from each selected element
             List<string> codeValues = new List<string>();
             foreach (XmlNode element in elements)
             {
@@ -176,13 +170,10 @@ namespace ExtragereaTrasaturilor
 
         public List<string> ExtractWords(string text)
         {
-            // Use a regular expression to extract globalVector (assumes globalVector are alphanumeric and may contain apostrophes)
             Regex regex = new Regex(@"\b[A-Za-z]+\b");
 
-            // Match globalVector in the text
             MatchCollection matches = regex.Matches(text);
 
-            // Convert matches to a list of strings
             List<string> words = new List<string>();
             foreach (Match match in matches)
             {
@@ -196,19 +187,9 @@ namespace ExtragereaTrasaturilor
             return words;
         }
 
-        public void DisplayWords(string header, List<string> words)
-        {
-            Console.WriteLine($"{header}:");
-            foreach (string word in words)
-            {
-                Console.WriteLine($"- {word}");
-            }
-            Console.WriteLine();
-        }
 
         public List<string> LoadStopWords(string filePath)
         {
-            // Read stopwords from file and return as a list
             try
             {
                 return File.ReadAllLines(filePath).ToList();

@@ -30,6 +30,7 @@
         {
             processDataBtn = new Button();
             chooseFolderCb = new ComboBox();
+            statusLabel = new Label();
             SuspendLayout();
             // 
             // processDataBtn
@@ -51,21 +52,32 @@
             chooseFolderCb.Size = new Size(150, 28);
             chooseFolderCb.TabIndex = 1;
             // 
+            // statusLabel
+            // 
+            statusLabel.AutoSize = true;
+            statusLabel.Location = new Point(79, 179);
+            statusLabel.Name = "statusLabel";
+            statusLabel.Size = new Size(0, 20);
+            statusLabel.TabIndex = 2;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(282, 253);
+            Controls.Add(statusLabel);
             Controls.Add(chooseFolderCb);
             Controls.Add(processDataBtn);
             Name = "Form1";
             Text = "Form1";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button processDataBtn;
         private ComboBox chooseFolderCb;
+        private Label statusLabel;
     }
 }

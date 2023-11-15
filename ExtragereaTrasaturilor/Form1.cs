@@ -18,15 +18,16 @@ namespace ExtragereaTrasaturilor
 
         private void processDataBtn_Click(object sender, EventArgs e)
         {
-            
-            if(chooseFolderCb.Text == "Testing + Training")
+            statusLabel.Text = "Status = Pending";
+            if (chooseFolderCb.Text == "Testing + Training")
             {
                 data.ProcessData();
             }
             else
             {
-                data.LoadLargeData();
+                data.ProcessLargeData();
             }
+            statusLabel.Text = "Status = Done";
         }
     }
 }
